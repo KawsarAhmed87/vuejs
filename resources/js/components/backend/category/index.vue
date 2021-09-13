@@ -29,7 +29,7 @@
                       <td>1.</td>
                       <td>Update software</td>
                       <td>sss</td>
-                      <td>xx</td>
+                      <td>{{someting}}</td>
                     </tr>
               
                   </tbody>
@@ -55,7 +55,11 @@
 
 <script>
 export default {
-
+  computed:{
+    someting(){
+      return this.$store.getters.test;
+    }
+  }
 }
 </script>
 

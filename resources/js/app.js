@@ -44,6 +44,21 @@ import {routes} from './routes/routes';
  window.Toast = Toast;
 
 
+/*toastr-------------*/
+
+import toastr from 'toastr';
+window.toastr = toastr;
+
+/*vuex------------------*/
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+import storeData from './store/store'
+
+const store = new Vuex.Store(
+  storeData,
+)
+
 
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
@@ -52,5 +67,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });

@@ -78,13 +78,20 @@ export default {
 
   methods: {
     async submitForm () {
+    let alterThis = this;
       const response = await this.form.post('/category-create')
         .then(function(data){
-            Toast.fire({
+            /*Toast.fire({
             icon: 'success',
-            title: 'Saved data successfully'
-          })
+            title: 'Saved data successfully',
+          }) */
+
+          toastr.success('Data saved successfully!', 'Success');
         })
+        
+        //alterThis.$router.push("/category");
+
+        alterThis.form.name = null;
     }
   }
 
