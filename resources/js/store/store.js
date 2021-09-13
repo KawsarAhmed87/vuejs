@@ -1,15 +1,23 @@
 export default{
   state: {
-    count: 45,
-    data : "data"
+    categoryData : []
   },
   
   getters: {
     
-    test(state){
-      return state.data;
+    categories(state){
+      return state.categoryData;
     }
     
+  },
+  actions: {
+    getCategories(){
+      axios.get("category-list").then((response) => {
+        console.log(response.data);
+      }).catch((error)=> {
+        console.log(error);
+      })
+    }
   },
   mutations: {
     

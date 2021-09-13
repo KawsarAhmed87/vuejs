@@ -21,6 +21,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/{xyz}', 'HomeController@index')->where('path', '.*');
+//Route::get('/{xyz}', 'HomeController@index')->where('path', '.*');
+
 
 Route::post('category-create', 'Admin\CategoryController@store')->name('category.create');
+Route::get('category-list', 'Admin\CategoryController@index');

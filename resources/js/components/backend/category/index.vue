@@ -29,7 +29,7 @@
                       <td>1.</td>
                       <td>Update software</td>
                       <td>sss</td>
-                      <td>{{someting}}</td>
+                      <td>{{categories}}</td>
                     </tr>
               
                   </tbody>
@@ -55,9 +55,13 @@
 
 <script>
 export default {
+  name: "index",
+  mounted() {
+    this.$store.dispatch("getCategories");
+  },
   computed:{
-    someting(){
-      return this.$store.getters.test;
+    categories(){
+      return this.$store.getters.categories;
     }
   }
 }

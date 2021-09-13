@@ -81,15 +81,21 @@ export default {
     let alterThis = this;
       const response = await this.form.post('/category-create')
         .then(function(data){
-            /*Toast.fire({
+
+            /*
+              sweetalert2
+            Toast.fire({
             icon: 'success',
             title: 'Saved data successfully',
           }) */
 
+            /*toastr---------*/
           toastr.success('Data saved successfully!', 'Success');
         })
         
-        //alterThis.$router.push("/category");
+        /*go to another page
+
+        alterThis.$router.push("/category");*/
 
         alterThis.form.name = null;
     }

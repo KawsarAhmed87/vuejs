@@ -2346,16 +2346,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 alterThis = _this;
                 _context.next = 3;
                 return _this.form.post('/category-create').then(function (data) {
-                  /*Toast.fire({
+                  /*
+                    sweetalert2
+                  Toast.fire({
                   icon: 'success',
                   title: 'Saved data successfully',
                   }) */
+
+                  /*toastr---------*/
                   toastr.success('Data saved successfully!', 'Success');
                 });
 
               case 3:
                 response = _context.sent;
-                //alterThis.$router.push("/category");
+
+                /*go to another page
+                  alterThis.$router.push("/category");*/
                 alterThis.form.name = null;
 
               case 5:
@@ -2436,9 +2442,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "index",
+  mounted: function mounted() {
+    this.$store.dispatch("getCategories");
+  },
   computed: {
-    someting: function someting() {
-      return this.$store.getters.test;
+    categories: function categories() {
+      return this.$store.getters.categories;
     }
   }
 });
@@ -43792,7 +43802,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v("sss")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.someting))])
+                _c("td", [_vm._v(_vm._s(_vm.categories))])
               ])
             ])
           ])
@@ -61019,12 +61029,20 @@ var routes = [{
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
-    count: 45,
-    data: "data"
+    categoryData: []
   },
   getters: {
-    test: function test(state) {
-      return state.data;
+    categories: function categories(state) {
+      return state.categoryData;
+    }
+  },
+  actions: {
+    getCategories: function getCategories() {
+      axios.get("category-list").then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   mutations: {}
