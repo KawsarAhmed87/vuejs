@@ -25,11 +25,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                      <td>sss</td>
-                      <td>{{categories}}</td>
+                    <tr v-for="(category, index) in categories">
+                      <td>{{index+1}}</td>
+                      <td>{{category.name}}</td>
+                      <td>{{category.slug}}</td>
+                      <td>{{category.status}}</td>
                     </tr>
               
                   </tbody>

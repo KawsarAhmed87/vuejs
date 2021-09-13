@@ -11,15 +11,19 @@ export default{
     
   },
   actions: {
-    getCategories(){
+    getCategories(data){
       axios.get("category-list").then((response) => {
-        console.log(response.data);
+        data.commit("categoryDatas", response.data.categories);
+     
+
       }).catch((error)=> {
         console.log(error);
       })
     }
   },
   mutations: {
-    
+    categoryDatas(state, stateData){
+      return state.categoryData = stateData;
+    }
   }
 }

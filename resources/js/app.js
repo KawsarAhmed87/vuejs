@@ -21,7 +21,7 @@ import {routes} from './routes/routes';
   
   const router = new VueRouter({
     routes,
-    mode: 'history', 
+   mode: 'history', 
 
   });
 
@@ -43,17 +43,14 @@ import {routes} from './routes/routes';
   });
  window.Toast = Toast;
 
-
 /*toastr-------------*/
-
 import toastr from 'toastr';
 window.toastr = toastr;
 
 /*vuex------------------*/
-import Vuex from 'vuex'
-Vue.use(Vuex)
-
-import storeData from './store/store'
+import Vuex from 'vuex';
+Vue.use(Vuex);
+import storeData from './store/store';
 
 const store = new Vuex.Store(
   storeData,
@@ -68,5 +65,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
     router,
-    store
+    store,
 });
