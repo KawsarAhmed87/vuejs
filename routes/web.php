@@ -26,3 +26,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('category-create', 'Admin\CategoryController@store')->name('category.create');
 Route::get('category-list', 'Admin\CategoryController@index');
+Route::get('category-delete/{id}', 'Admin\CategoryController@destroy');

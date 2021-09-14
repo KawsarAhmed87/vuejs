@@ -21,7 +21,7 @@ import {routes} from './routes/routes';
   
   const router = new VueRouter({
     routes,
-   mode: 'history', 
+  // mode: 'history', 
 
   });
 
@@ -56,7 +56,7 @@ const store = new Vuex.Store(
   storeData,
 )
 
-
+import {filter} from './filter/filter';
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 

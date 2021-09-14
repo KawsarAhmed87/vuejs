@@ -26,6 +26,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.4",
         "admin-lte": "^3.1.0",
+        "moment": "^2.29.1",
         "sweetalert2": "^11.1.5",
         "toastr": "^2.1.4",
         "vform": "^2.1.1",

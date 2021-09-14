@@ -18,10 +18,12 @@
          <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Task</th>
-                      <th>Progress</th>
-                      <th style="width: 40px">Label</th>
+                      <th style="width: 5%">SL</th>
+                      <th style="width: 30%">Name</th>
+                      <th style="width: 20%">Slug</th>
+                      <th style="width: 15%">Status</th>
+                      <th style="width: 15%">Created</th>
+                      <th style="width: 15%">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -29,7 +31,16 @@
                       <td>{{index+1}}</td>
                       <td>{{category.name}}</td>
                       <td>{{category.slug}}</td>
-                      <td>{{category.status}}</td>
+                      <td>{{statusName(category.status)}}</td>
+                      <td>{{category.created_at | time }}</td>
+                      <td>
+                        <router-link :to="`/category-edit/${category.id}`" class="btn btn-success btn-sm">Edit</router-link>
+                       
+                        <button type="button" class="btn btn-danger btn-sm" @click="deleteCategory(category.id)">Delete</button>
+                      </td>
+                    </tr>
+                    <tr v-if="emptyData()">
+                        <td colspan="5"><h5 class="text-center text-danger">No data found!</h5></td>
                     </tr>
               
                   </tbody>
@@ -63,7 +74,45 @@ export default {
     categories(){
       return this.$store.getters.categories;
     }
-  }
+  },
+  methods: {
+
+    statusName: function(status){
+      let data = {
+        0: "In-Active", 1: "Active"
+      }
+
+      return data[status];
+    },
+
+    deleteCategory: function(id){
+
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+             axios.get('category-delete/'+id).then((response)=>{
+                toastr.error('Data deleted successfully!', 'Deleted');
+                this.$store.dispatch("getCategories");
+              }).catch((error) => {
+
+              })
+
+          }
+        })
+
+    },
+
+    emptyData: function(){
+      return (this.categories.length < 1);
+    }
+  },
 }
 </script>
 
