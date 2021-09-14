@@ -15,12 +15,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       // $categories = Category::with('Posts')->get();
+        // $categories = Category::with('Posts')->get();
         // return $categories;
         $categories = Category::all();
-       return response()->json([
-        'categories' => $categories
-       ], 200);
+        return response()->json([
+            'categories' => $categories,
+        ], 200);
 
     }
 
@@ -50,7 +50,7 @@ class CategoryController extends Controller
 
         Category::create([
             'name' => $request->name,
-            'slug' => $request->name,
+            'slug' => slugify($request->name), //app/helpers/functions.php->slugify()
             'status' => $request->status,
         ]);
     }
