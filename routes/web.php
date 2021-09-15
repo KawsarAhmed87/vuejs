@@ -23,16 +23,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/{xyz}', 'HomeController@index')->where('path', '.*');
 
-
 Route::post('category-create', 'Admin\CategoryController@store')->name('category.create');
 Route::get('category-list', 'Admin\CategoryController@index');
 Route::get('category-delete/{id}', 'Admin\CategoryController@destroy');
 Route::get('category-show/{slug}', 'Admin\CategoryController@show');
 Route::post('category-update/{slug}', 'Admin\CategoryController@update');
 
-
 Route::post('post-create', 'Admin\PostController@store');
 Route::get('post-list', 'Admin\PostController@index');
 Route::get('post-delete/{id}', 'Admin\PostController@destroy');
-Route::get('post-show/{slug}', 'Admin\PostController@show');
-Route::post('post-update/{slug}', 'Admin\PostController@update');
+Route::get('post-show/{id}', 'Admin\PostController@show');
+Route::post('post-update/{id}', 'Admin\PostController@update');

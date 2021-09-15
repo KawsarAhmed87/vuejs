@@ -8,15 +8,15 @@
 
         <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Update category</h3>
+          <h3 class="card-title">Update post</h3>
 
 
           <div class="card-tools">
-            <router-link to="/category" class="btn btn-block btn-success btn-sm">Category list</router-link>
+            <router-link to="/post" class="btn btn-block btn-success btn-sm">Post list</router-link>
           </div>
         </div>
         <div class="card-body">
-            <form class="form-horizontal" @submit.prevent="updateCategory" @keydown="form.onKeydown($event)"> 
+            <form class="form-horizontal" @submit.prevent="updatePost" @keydown="form.onKeydown($event)"> 
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="categoryName" class="col-sm-2 col-form-label">Name</label>
@@ -82,13 +82,13 @@ export default {
     },
 
     mounted(){
-      this.getCategoryData();
+      this.getPostData();
     },
 
   methods: {
-    async updateCategory () {
+    async updatePost () {
     let alterThis = this;
-      const response = await this.form.post('/category-update/'+ this.$route.params.slug)
+      const response = await this.form.post('/post-update/'+ this.$route.params.id)
         .then(function(data){
 
          
@@ -98,16 +98,16 @@ export default {
         
         /*go to another page */
 
-        alterThis.$router.push("/category");
+        alterThis.$router.push("/post");
 
        
     },
 
-    getCategoryData: function(){
-      let this_category = this;
-      axios.get("/category-show/" + this.$route.params.slug).then((response)=>{
+    getPostData: function(){
+      let this_post = this;
+      axios.get("/post-show/" + this.$route.params.slug).then((response)=>{
       
-        this_category.form.fill(response.data.category);
+        this_post.form.fill(response.data.post);
       }).catch((error) => {
 
       })

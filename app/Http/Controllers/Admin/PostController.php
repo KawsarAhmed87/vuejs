@@ -15,8 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-       
-         $posts = Post::with("category", "user")->get();
+
+        $posts = Post::with("category", "user")->get();
         return response()->json([
             'posts' => $posts,
         ], 200);
@@ -85,6 +85,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
     }
 }
