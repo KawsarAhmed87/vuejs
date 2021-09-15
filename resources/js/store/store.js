@@ -1,12 +1,17 @@
 export default{
   state: {
-    categoryData : []
+    categoryData : [],
+    PostData : []
   },
   
   getters: {
     
     categories(state){
       return state.categoryData;
+    },
+
+    posts(state){
+      return state.PostData;
     }
     
   },
@@ -19,11 +24,26 @@ export default{
       }).catch((error)=> {
         console.log(error);
       })
-    }
+    },
+
+    getPosts(data){
+      axios.get("post-list").then((response) => {
+        data.commit("postDatas", response.data.posts);
+     
+
+      }).catch((error)=> {
+        console.log(error);
+      })
+    },
+
   },
   mutations: {
     categoryDatas(state, stateData){
       state.categoryData = stateData;
+    },
+
+    postDatas(state, stateData){
+      state.PostData = stateData;
     }
   }
 }

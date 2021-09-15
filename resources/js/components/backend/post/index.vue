@@ -8,41 +8,45 @@
 
         <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Category list</h3>
+          <h3 class="card-title">Post list</h3>
 
           <div class="card-tools">
-            <router-link to="/category-create" class="btn btn-block btn-success btn-sm">Add category</router-link>
+            <router-link to="/post-create" class="btn btn-block btn-success btn-sm">Add post</router-link>
           </div>
         </div>
         <div class="card-body">
          <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <td style="width: 8%"><input type="checkbox"> All</td>
-                      <th style="width: 5%">SL</th>
-                      <th style="width: 30%">Name</th>
-                      <th style="width: 20%">Slug</th>
-                      <th style="width: 10%">Status</th>
-                      <th style="width: 15%">Created</th>
-                      <th style="width: 12%">Action</th>
+                      <th>SL</th>
+                      <th>User</th>
+                      <th>Category</th>
+                      <th>Title</th>
+                      <th>Content</th>
+                      <th>Image</th>
+                      <th>Statsu</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(category, index) in categories">
-                      <td><input type="checkbox" :value="category.id" v-model="categoryIds"></td>
+                    <tr v-for="(post, index) in posts">
+                   
                       <td>{{index+1}}</td>
-                      <td>{{category.name | sortName(10) }}</td>
-                      <td>{{category.slug}}</td>
-                      <td>{{statusName(category.status)}}</td>
-                      <td>{{category.created_at | time }}</td>
-                      <td>
-                        <router-link :to="`/category-edit/${category.slug}`" class="btn btn-success btn-sm">Edit</router-link>
+                      <td>{{post.user.name}}</td>
+                      <td>{{post.category.name}}</td>
+                      <td>{{post.title | sortName(20)}}</td>
+                      <td>{{post.content | sortName(20)}}</td>
+                      <td><img width="75px" :src="post.thumbnail "></td>
+                      <td>{{post.status | firtUpper }}</td>
+                      
+                      <td width="12%">
+                        <router-link :to="`post-edit/${post.id}`" class="btn btn-success btn-sm">Edit</router-link>
                        
-                        <button type="button" class="btn btn-danger btn-sm" @click="deleteCategory(category.id)">Delete</button>
+                        <button type="button" class="btn btn-danger btn-sm" @click="deletePost(post.id)">Delete</button>
                       </td>
                     </tr>
                     <tr v-if="emptyData()">
-                        <td colspan="5"><h5 class="text-center text-danger">No data found!</h5></td>
+                        <td colspan="8"><h5 class="text-center text-danger">No data found!</h5></td>
                     </tr>
               
                   </tbody>
@@ -71,28 +75,21 @@ export default {
   name: "index",
   data: function(){
     return {
-      categoryIds:[]
+     
     }
   },
   mounted() {
-    this.$store.dispatch("getCategories");
+    this.$store.dispatch("getPosts");
   },
   computed:{
-    categories(){
-      return this.$store.getters.categories;
+    posts(){
+      return this.$store.getters.posts;
     }
   },
   methods: {
 
-    statusName: function(status){
-      let data = {
-        0: "In-Active", 1: "Active"
-      }
-
-      return data[status];
-    },
-
-    deleteCategory: function(id){
+   
+    deletePost: function(id){
 
       Swal.fire({
           title: 'Are you sure?',
@@ -104,9 +101,9 @@ export default {
           confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
           if (result.isConfirmed) {
-             axios.get('category-delete/'+id).then((response)=>{
+             axios.get('post-delete/'+id).then((response)=>{
                 toastr.error('Data deleted successfully!', 'Deleted');
-                this.$store.dispatch("getCategories");
+                this.$store.dispatch("getPosts");
               }).catch((error) => {
 
               })
@@ -117,7 +114,7 @@ export default {
     },
 
     emptyData: function(){
-      return (this.categories.length < 1);
+      return (this.posts.length < 1);
     }
   },
 }

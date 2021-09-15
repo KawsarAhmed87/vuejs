@@ -61,9 +61,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+
+        $category = Category::where('slug', $slug)->first();
+
+        return response()->json(['category' => $category], 200);
     }
 
     /**
@@ -84,9 +87,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+         $this->validate($request, [
+            'name' => 'required|min:5|max:100',
+            'status' => 'required',
+
+        ]);
+
+         $category = Category::where('slug',$slug)->first();
+
+        $category->name = $request->name;
+        $category->slug = slugify($request->name);
+        $category->status = $request->status;
+
+        $category->save();
     }
 
     /**

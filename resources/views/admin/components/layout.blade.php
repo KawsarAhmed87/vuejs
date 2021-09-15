@@ -102,10 +102,18 @@
               <p>Home</p>
             </router-link>
           </li>
+
           <li class="nav-item">
             <router-link to="/category" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>Category</p>
+            </router-link>
+          </li>
+
+          <li class="nav-item">
+            <router-link to="/post" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Post</p>
             </router-link>
           </li>
       
