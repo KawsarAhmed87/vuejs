@@ -18,7 +18,7 @@
          <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <td style="width: 8%"><input type="checkbox"> All</td>
+                      <td style="width: 8%"><input type="checkbox" :disabled="emptyData()" @click="allSelect" v-model="selectedAll"> All</td>
                       <th style="width: 5%">SL</th>
                       <th style="width: 30%">Name</th>
                       <th style="width: 20%">Slug</th>
@@ -29,7 +29,7 @@
                   </thead>
                   <tbody>
                     <tr v-for="(category, index) in categories">
-                      <td><input type="checkbox" :value="category.id" v-model="categoryIds"></td>
+                      <td><input type="checkbox"  :value="category.id" v-model="selectedData"></td>
                       <td>{{index+1}}</td>
                       <td>{{category.name | sortName(10) }}</td>
                       <td>{{category.slug}}</td>
@@ -71,11 +71,18 @@ export default {
   name: "index",
   data: function(){
     return {
-      categoryIds:[]
+      categoryIds:[],
+      selectedAll: false,
+      selectedData: [],
     }
   },
   mounted() {
     this.$store.dispatch("getCategories");
+  },
+  watch:{
+    selectedData: function(selectedData){
+      this.selectedAll = (selectedData.length == this.categories.length);
+    }
   },
   computed:{
     categories(){
@@ -118,7 +125,17 @@ export default {
 
     emptyData: function(){
       return (this.categories.length < 1);
-    }
+    },
+
+    allSelect: function(event){
+      if(event.target.checked == false){
+        this.selectedData = [];
+      }else{
+        this.categories.forEach((category) =>{
+          this.selectedData.push(category.id);
+        });
+      }
+    },
   },
 }
 </script>

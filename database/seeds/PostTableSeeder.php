@@ -13,7 +13,7 @@ class PostTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        foreach (range(1, 20) as $index) {
+        foreach (range(1, 15) as $index) {
             Post::create([
                 "user_id" => rand(1, 20),
                 "category_id" => rand(1, 5),
