@@ -41,6 +41,19 @@
                         <button type="button" class="btn btn-danger btn-sm" @click="deleteCategory(category.id)">Delete</button>
                       </td>
                     </tr>
+                     <tr v-if="!emptyData()">
+                        <td colspan="5">
+                          <div class="dropdown">
+                            <button class="btn btn-info dropdown-toggle" :disabled="!isSelected" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                              Action
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <button type="button" @click="removeItems(selectedData)" class="dropdown-item" >Delete</button type="button">
+                             
+                            </div>
+                          </div>
+                        </td>
+                    </tr>
                     <tr v-if="emptyData()">
                         <td colspan="5"><h5 class="text-center text-danger">No data found!</h5></td>
                     </tr>
@@ -71,9 +84,9 @@ export default {
   name: "index",
   data: function(){
     return {
-      categoryIds:[],
       selectedAll: false,
       selectedData: [],
+      isSelected: false,
     }
   },
   mounted() {
@@ -81,6 +94,7 @@ export default {
   },
   watch:{
     selectedData: function(selectedData){
+      this.isSelected = (selectedData.length > 0);
       this.selectedAll = (selectedData.length == this.categories.length);
     }
   },
@@ -132,9 +146,23 @@ export default {
         this.selectedData = [];
       }else{
         this.categories.forEach((category) =>{
-          this.selectedData.push(category.id);
+          if (this.selectedData.indexOf(category.id) == -1) {
+            this.selectedData.push(category.id);
+          }
         });
       }
+    },
+
+    removeItems: function(selectedData){
+      axios.post("categories/bulk-delete", {dataSelect: selectedData}).then((response) =>{
+          this.selectedAll = false;
+          this.selectedData = [];
+          this.isSelected = false;
+       toastr.error('Data deleted successfully!', 'Deleted');
+        this.$store.dispatch("getCategories");
+      }).catch((error) => {
+
+      });
     },
   },
 }

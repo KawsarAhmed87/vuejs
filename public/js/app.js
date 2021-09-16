@@ -2593,13 +2593,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "index",
   data: function data() {
     return {
-      categoryIds: [],
       selectedAll: false,
-      selectedData: []
+      selectedData: [],
+      isSelected: false
     };
   },
   mounted: function mounted() {
@@ -2607,6 +2620,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     selectedData: function selectedData(_selectedData) {
+      this.isSelected = _selectedData.length > 0;
       this.selectedAll = _selectedData.length == this.categories.length;
     }
   },
@@ -2654,9 +2668,25 @@ __webpack_require__.r(__webpack_exports__);
         this.selectedData = [];
       } else {
         this.categories.forEach(function (category) {
-          _this2.selectedData.push(category.id);
+          if (_this2.selectedData.indexOf(category.id) == -1) {
+            _this2.selectedData.push(category.id);
+          }
         });
       }
+    },
+    removeItems: function removeItems(selectedData) {
+      var _this3 = this;
+
+      axios.post("categories/bulk-delete", {
+        dataSelect: selectedData
+      }).then(function (response) {
+        _this3.selectedAll = false;
+        _this3.selectedData = [];
+        _this3.isSelected = false;
+        toastr.error('Data deleted successfully!', 'Deleted');
+
+        _this3.$store.dispatch("getCategories");
+      })["catch"](function (error) {});
     }
   }
 });
@@ -66360,6 +66390,55 @@ var render = function() {
                   ])
                 }),
                 _vm._v(" "),
+                !_vm.emptyData()
+                  ? _c("tr", [
+                      _c("td", { attrs: { colspan: "5" } }, [
+                        _c("div", { staticClass: "dropdown" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info dropdown-toggle",
+                              attrs: {
+                                disabled: !_vm.isSelected,
+                                type: "button",
+                                id: "dropdownMenuButton",
+                                "data-toggle": "dropdown"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Action\n                          "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "dropdown-menu",
+                              attrs: { "aria-labelledby": "dropdownMenuButton" }
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.removeItems(_vm.selectedData)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Delete")]
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _vm.emptyData() ? _c("tr", [_vm._m(0)]) : _vm._e()
               ],
               2
@@ -84150,15 +84229,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/backend/category/index.vue ***!
   \************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_vue_vue_type_template_id_70b9f367___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=70b9f367& */ "./resources/js/components/backend/category/index.vue?vue&type=template&id=70b9f367&");
 /* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/components/backend/category/index.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -84188,7 +84266,7 @@ component.options.__file = "resources/js/components/backend/category/index.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/backend/category/index.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

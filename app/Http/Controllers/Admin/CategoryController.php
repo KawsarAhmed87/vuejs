@@ -116,4 +116,11 @@ class CategoryController extends Controller
 
         $category->delete();
     }
+
+    public function bulkDelete(Request $request){
+       foreach ($request->dataSelect as $data) {
+         $category = Category::find($data);
+         $category->delete();
+       }
+    }
 }
