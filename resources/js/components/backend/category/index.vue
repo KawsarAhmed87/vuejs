@@ -48,6 +48,8 @@
                               Action
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <button type="button" @click="changeStatus(selectedData, 1)" class="dropdown-item" >Active</button type="button">
+                              <button type="button" @click="changeStatus(selectedData, 0)" class="dropdown-item" >In-active</button type="button">
                               <button type="button" @click="removeItems(selectedData)" class="dropdown-item" >Delete</button type="button">
                              
                             </div>
@@ -115,25 +117,14 @@ export default {
 
     deleteCategory: function(id){
 
-      Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-             axios.get('category-delete/'+id).then((response)=>{
-                toastr.error('Data deleted successfully!', 'Deleted');
-                this.$store.dispatch("getCategories");
-              }).catch((error) => {
+      this.confirm(()=> {
+        axios.get('category-delete/'+id).then((response)=>{
+            toastr.error('Data deleted successfully!', 'Deleted');
+            this.$store.dispatch("getCategories");
+          }).catch((error) => {
 
-              })
-
-          }
-        })
+          })
+      });
 
     },
 
@@ -154,16 +145,34 @@ export default {
     },
 
     removeItems: function(selectedData){
-      axios.post("categories/bulk-delete", {dataSelect: selectedData}).then((response) =>{
+      this.confirm(()=> {
+        axios.post("categories/bulk-delete", {dataSelect: selectedData}).then((response) =>{
           this.selectedAll = false;
           this.selectedData = [];
           this.isSelected = false;
-       toastr.error('Data deleted successfully!', 'Deleted');
+          toastr.error('Data deleted successfully!', 'Deleted');
+          this.$store.dispatch("getCategories");
+          }).catch((error) => {
+
+          })
+      });
+
+    },
+
+    changeStatus: function(selectedData, statusInfo){
+      let message = statusInfo === 1 ? "active" : "in-active"
+      axios.post("categories/change-status", {dataSelect: selectedData, statusInfo: statusInfo}).then((response) =>{
+         this.selectedAll = false;
+          this.selectedData = [];
+          this.isSelected = false;
+       toastr.success('Data ' +message+' status changed successfully!', 'Status');
         this.$store.dispatch("getCategories");
       }).catch((error) => {
 
       });
     },
+
+
   },
 }
 </script>

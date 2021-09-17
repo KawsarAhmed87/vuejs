@@ -123,4 +123,12 @@ class CategoryController extends Controller
          $category->delete();
        }
     }
+
+    public function changeBulkStatus(Request $request){
+        foreach ($request->dataSelect as $data) {
+            $category = Category::find($data);
+            $category->status = $request->statusInfo;
+            $category->save();
+          }
+    }
 }

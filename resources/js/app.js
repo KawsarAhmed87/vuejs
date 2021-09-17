@@ -61,6 +61,7 @@ import {filter} from './filter/filter';
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 
+import './helpers/mixin';
 
 const app = new Vue({
     el: '#app',
