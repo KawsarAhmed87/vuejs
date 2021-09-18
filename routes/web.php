@@ -36,3 +36,5 @@ Route::get('post-list', 'Admin\PostController@index');
 Route::get('post-delete/{id}', 'Admin\PostController@destroy');
 Route::get('post-show/{id}', 'Admin\PostController@show');
 Route::post('post-update/{id}', 'Admin\PostController@update');
+Route::post('posts/bulk-delete', 'Admin\PostController@bulkDelete');
+Route::post('posts/change-status', 'Admin\PostController@changeBulkStatus');

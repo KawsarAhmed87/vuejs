@@ -18,6 +18,7 @@
          <table class="table table-bordered">
                   <thead>
                     <tr>
+                      <td style="width: 8%"><input type="checkbox" :disabled="emptyData()" @click="allSelect" v-model="selectedAll"> All</td>
                       <th>SL</th>
                       <th>User</th>
                       <th>Category</th>
@@ -30,7 +31,7 @@
                   </thead>
                   <tbody>
                     <tr v-for="(post, index) in posts">
-                   
+                      <td><input type="checkbox"  :value="post.id" v-model="selectedData"></td>
                       <td>{{index+1}}</td>
                       <td>{{post.user.name}}</td>
                       <td>{{post.category.name}}</td>
@@ -44,6 +45,21 @@
                        
                         <button type="button" class="btn btn-danger btn-sm" @click="deletePost(post.id)">Delete</button>
                       </td>
+                    </tr>
+                    <tr v-if="!emptyData()">
+                        <td colspan="5">
+                          <div class="dropdown">
+                            <button class="btn btn-info dropdown-toggle" :disabled="!isSelected" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                              Action
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <button type="button" @click="changeStatus(selectedData, 'published')" class="dropdown-item" >Published</button type="button">
+                              <button type="button" @click="changeStatus(selectedData, 'draft')" class="dropdown-item" >Draft</button type="button">
+                              <button type="button" @click="removeItems(selectedData)" class="dropdown-item" >Delete</button type="button">
+                             
+                            </div>
+                          </div>
+                        </td>
                     </tr>
                     <tr v-if="emptyData()">
                         <td colspan="8"><h5 class="text-center text-danger">No data found!</h5></td>
@@ -75,11 +91,22 @@ export default {
   name: "index",
   data: function(){
     return {
+
+      selectedAll: false,
+      selectedData: [],
+      isSelected: false,
      
     }
   },
   mounted() {
     this.$store.dispatch("getPosts");
+  },
+
+  watch:{
+    selectedData: function(selectedData){
+      this.isSelected = (selectedData.length > 0);
+      this.selectedAll = (selectedData.length == this.posts.length);
+    }
   },
   computed:{
     posts(){
@@ -115,7 +142,52 @@ export default {
 
     emptyData: function(){
       return (this.posts.length < 1);
-    }
+    },
+
+    allSelect: function(event){
+      if(event.target.checked == false){
+        this.selectedData = [];
+      }else{
+        this.posts.forEach((post) =>{
+          if (this.selectedData.indexOf(post.id) == -1) {
+            this.selectedData.push(post.id);
+          }
+        });
+      }
+    },
+
+
+    removeItems: function(selectedData){
+      this.confirm(()=> {
+        axios.post("posts/bulk-delete", {dataSelect: selectedData}).then((response) =>{
+          this.selectedAll = false;
+          this.selectedData = [];
+          this.isSelected = false;
+          toastr.error('Data deleted successfully!', 'Deleted');
+          this.$store.dispatch("getPosts");
+          }).catch((error) => {
+
+          })
+      });
+
+    },
+
+
+     changeStatus: function(selectedData, statusInfo){
+      let message = statusInfo === 'published' ? "Published" : "Draft"
+      axios.post("posts/change-status", {dataSelect: selectedData, statusInfo: statusInfo}).then((response) =>{
+         this.selectedAll = false;
+          this.selectedData = [];
+          this.isSelected = false;
+       toastr.success('Data ' +message+' status changed successfully!', 'Status');
+        this.$store.dispatch("getPosts");
+      }).catch((error) => {
+
+      });
+    },
+
+
+
   },
 }
 </script>

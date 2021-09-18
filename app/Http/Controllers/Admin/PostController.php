@@ -89,4 +89,19 @@ class PostController extends Controller
 
         $post->delete();
     }
+
+    public function bulkDelete(Request $request){
+       foreach ($request->dataSelect as $data) {
+         $category = Post::find($data);
+         $category->delete();
+       }
+    }
+
+    public function changeBulkStatus(Request $request){
+        foreach ($request->dataSelect as $data) {
+            $post = Post::find($data);
+            $post->status = $request->statusInfo;
+            $post->save();
+          }
+    }
 }
