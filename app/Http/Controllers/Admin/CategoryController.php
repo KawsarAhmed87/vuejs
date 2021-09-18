@@ -23,6 +23,16 @@ class CategoryController extends Controller
         ], 200);
 
     }
+    public function activeCategoriesList()
+    {
+        // $categories = Category::with('Posts')->get();
+        // return $categories;
+        $categories = Category::where('status', 1)->get();
+        return response()->json([
+            'categories' => $categories,
+        ], 200);
+
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -89,13 +99,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $slug)
     {
-         $this->validate($request, [
+        $this->validate($request, [
             'name' => 'required|min:5|max:100',
             'status' => 'required',
 
         ]);
 
-         $category = Category::where('slug',$slug)->first();
+        $category = Category::where('slug', $slug)->first();
 
         $category->name = $request->name;
         $category->slug = slugify($request->name);
@@ -117,18 +127,20 @@ class CategoryController extends Controller
         $category->delete();
     }
 
-    public function bulkDelete(Request $request){
-       foreach ($request->dataSelect as $data) {
-         $category = Category::find($data);
-         $category->delete();
-       }
+    public function bulkDelete(Request $request)
+    {
+        foreach ($request->dataSelect as $data) {
+            $category = Category::find($data);
+            $category->delete();
+        }
     }
 
-    public function changeBulkStatus(Request $request){
+    public function changeBulkStatus(Request $request)
+    {
         foreach ($request->dataSelect as $data) {
             $category = Category::find($data);
             $category->status = $request->statusInfo;
             $category->save();
-          }
+        }
     }
 }

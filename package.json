@@ -24,6 +24,11 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-balloon": "^29.2.0",
+        "@ckeditor/ckeditor5-build-balloon-block": "^29.2.0",
+        "@ckeditor/ckeditor5-build-classic": "^29.2.0",
+        "@ckeditor/ckeditor5-build-decoupled-document": "^29.2.0",
+        "@ckeditor/ckeditor5-build-inline": "^29.2.0",
         "@fortawesome/fontawesome-free": "^5.15.4",
         "admin-lte": "^3.1.0",
         "moment": "^2.29.1",

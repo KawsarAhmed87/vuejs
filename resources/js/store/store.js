@@ -22,7 +22,17 @@ export default{
      
 
       }).catch((error)=> {
-        console.log(error);
+       
+      })
+    },
+
+    getActiveCategories(data){
+      axios.get("category-active-list").then((response) => {
+        data.commit("categoryDatas", response.data.categories);
+     
+
+      }).catch((error)=> {
+        
       })
     },
 
@@ -30,9 +40,8 @@ export default{
       axios.get("post-list").then((response) => {
         data.commit("postDatas", response.data.posts);
      
-
       }).catch((error)=> {
-        console.log(error);
+        
       })
     },
 
