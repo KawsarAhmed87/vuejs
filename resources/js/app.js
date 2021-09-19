@@ -63,6 +63,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 import './helpers/mixin';
 
+/*CKEditor text editor--------------------*/
+
+import CKEditor from '@ckeditor/ckeditor5-vue2';
+Vue.use( CKEditor );
+
+
 const app = new Vue({
     el: '#app',
     router,

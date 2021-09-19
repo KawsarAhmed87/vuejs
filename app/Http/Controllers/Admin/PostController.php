@@ -40,7 +40,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:5|max:100',
+            'category_id' => 'required',
+            'content' => 'required',
+            'status' => 'required',
+
+        ]);
+
+        Category::create([
+            'title' => $request->title,
+            'user_id' => Auth()->user()->id,
+            'category_id' => $request->category_id,
+            'content' => $request->content,
+            'thumbnail' => 'thumbnail',
+            'status' => $request->status,
+        ]);
     }
 
     /**

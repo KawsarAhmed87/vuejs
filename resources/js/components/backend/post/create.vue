@@ -36,18 +36,37 @@
                       <input type="text" class="form-control" id="postTitle" placeholder="Post title" v-model="form.title" >
                       <HasError :form="form" field="title" />
                     </div>
-                  </div>
+                  </div> 
+                   
+
+                   <div class="form-group row">
+                    <label for="postContent" class="col-sm-2 col-form-label">Content</label>
+                    <div class="col-sm-10">
+                      
+                      <ckeditor :editor="editor" v-model="form.content" :config="editorConfig"></ckeditor>
+                      <HasError :form="form" field="content" />
+                    </div>
+                  </div> 
+
+                  <div class="form-group row">
+                    <label for="postThumbnail" class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-10">
+                      <input type="file"  id="postThumbnail" @change="loadThumbnail($event)"/>
+                      <img :src="form.thumbnail" alt="">
+                      <HasError :form="form" field="thumbnail" />
+                    </div>
+                  </div> 
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Status</label>
                     <div class="col-sm-10">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="activeCheck" value="1" v-model="form.status">
+                        <input class="form-check-input" type="radio" id="activeCheck" value="published" v-model="form.status">
                         <label class="form-check-label" for="activeCheck">Published</label>
                         
                         </div>
                          <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="inActiveCheck" value="0" v-model="form.status">
+                        <input class="form-check-input" type="radio" id="inActiveCheck" value="draft" v-model="form.status">
                         <label class="form-check-label" for="inActiveCheck">Draft</label>
                         </div>
                         <HasError :form="form" field="status" />
@@ -78,6 +97,8 @@
 </template>
 
 <script>
+
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
 
     name: "create",
@@ -85,9 +106,16 @@ export default {
     form: new Form({
       title: null,
       category_id: '',
-      status: 1,
-      
-    })
+      content: null,
+      thumbnail: null,
+     
+      status: 'published', 
+    }),
+
+     editor: ClassicEditor,
+      editorConfig: {
+          // The configuration of the editor.
+      }
   }),
 
   mounted() {
@@ -103,9 +131,9 @@ export default {
   methods: {
     async submitForm () {
     let alterThis = this;
-      const response = await this.form.post('/category-create')
+      const response = await this.form.post('/post-create')
         .then(function(data){
-
+            console.log(data);
             /*
               sweetalert2
             Toast.fire({
@@ -114,15 +142,28 @@ export default {
           }) */
 
             /*toastr---------*/
-          toastr.success('Data saved successfully!', 'Success');
+         // toastr.success('Data saved successfully!', 'Success');
         })
         
         /*go to another page*/
 
-        alterThis.$router.push("/category");
+       // alterThis.$router.push("/post-list");
 
-       // alterThis.form.name = null;
+     
+    },
+
+    loadThumbnail: function(e){
+      
+      let file = e.target.files[0];
+      let reader = new FileReader();
+    
+      reader.onload  = e => {
+        this.form.thumbnail = e.target.result;
+      }
+
+      reader.readAsDataURL(file);
     }
+
   }
 
 }
