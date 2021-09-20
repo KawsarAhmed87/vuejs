@@ -2941,23 +2941,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 alterThis = _this;
                 _context.next = 3;
-                return _this.form.post('/post-create').then(function (data) {
-                  console.log(data);
-                  /*
-                    sweetalert2
-                  Toast.fire({
-                  icon: 'success',
-                  title: 'Saved data successfully',
-                  }) */
-
+                return _this.form.post('/post-create').then(function (response) {
                   /*toastr---------*/
-                  // toastr.success('Data saved successfully!', 'Success');
+                  toastr.success('Data saved successfully!', 'Success');
                 });
 
               case 3:
                 response = _context.sent;
 
-              case 4:
+                /*go to another page*/
+                alterThis.$router.push("/post");
+
+              case 5:
               case "end":
                 return _context.stop();
             }

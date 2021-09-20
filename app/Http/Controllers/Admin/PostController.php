@@ -16,7 +16,9 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::with("category", "user")->get();
+        $posts = Post::with("category", "user")
+                ->orderBy('id', "DESC")
+                ->get();
         return response()->json([
             'posts' => $posts,
         ], 200);
@@ -41,14 +43,14 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|min:5|max:100',
+            'title' => 'required',
             'category_id' => 'required',
             'content' => 'required',
             'status' => 'required',
 
         ]);
 
-        Category::create([
+        Post::create([
             'title' => $request->title,
             'user_id' => Auth()->user()->id,
             'category_id' => $request->category_id,

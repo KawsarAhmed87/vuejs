@@ -132,24 +132,15 @@ export default {
     async submitForm () {
     let alterThis = this;
       const response = await this.form.post('/post-create')
-        .then(function(data){
-            console.log(data);
-            /*
-              sweetalert2
-            Toast.fire({
-            icon: 'success',
-            title: 'Saved data successfully',
-          }) */
-
-            /*toastr---------*/
-         // toastr.success('Data saved successfully!', 'Success');
+        .then(function(response){
+                   
+          /*toastr---------*/
+         toastr.success('Data saved successfully!', 'Success');
         })
         
         /*go to another page*/
 
-       // alterThis.$router.push("/post-list");
-
-     
+        alterThis.$router.push("/post");
     },
 
     loadThumbnail: function(e){
