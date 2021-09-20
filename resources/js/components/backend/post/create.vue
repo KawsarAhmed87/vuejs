@@ -148,11 +148,20 @@ export default {
       let file = e.target.files[0];
       let reader = new FileReader();
     
-      reader.onload  = e => {
-        this.form.thumbnail = e.target.result;
+      if (file.type === 'image/jpeg') {
+        reader.onload  = e => {
+          this.form.thumbnail = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+
+      } else {
+        toastr.error('Image formet not supported!', 'Error');
       }
 
-      reader.readAsDataURL(file);
+      
+
+      
     }
 
   }

@@ -2966,11 +2966,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var file = e.target.files[0];
       var reader = new FileReader();
 
-      reader.onload = function (e) {
-        _this2.form.thumbnail = e.target.result;
-      };
+      if (file.type === 'image/jpeg') {
+        reader.onload = function (e) {
+          _this2.form.thumbnail = e.target.result;
+        };
 
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      } else {
+        toastr.error('Image formet not supported!', 'Error');
+      }
     }
   }
 });

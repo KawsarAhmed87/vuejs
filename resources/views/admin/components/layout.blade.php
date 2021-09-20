@@ -97,21 +97,21 @@
 
 
           <li class="nav-item">
-            <router-link to="/home" class="nav-link">
+            <router-link to="/home" class="nav-link" active-class="active">
               <i class="nav-icon fas fa-th"></i>
               <p>Home</p>
             </router-link>
           </li>
 
           <li class="nav-item">
-            <router-link to="/category" class="nav-link">
+            <router-link to="/category" class="nav-link" active-class="active">
               <i class="nav-icon fas fa-th"></i>
               <p>Category</p>
             </router-link>
           </li>
 
           <li class="nav-item">
-            <router-link to="/post" class="nav-link">
+            <router-link to="/post" class="nav-link" active-class="active">
               <i class="nav-icon fas fa-th"></i>
               <p>Post</p>
             </router-link>
