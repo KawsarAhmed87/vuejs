@@ -15,6 +15,35 @@ Vue.mixin({
               }).then((result) => {
                 if (result.isConfirmed) Callbacks();
               });
-        }
+        },
+
+
+        loadThumbnail: function(e){
+      
+              let file = e.target.files[0];
+              let reader = new FileReader();
+            
+              if (file.type === 'image/jpeg') {
+                reader.onload  = e => {
+                  this.form.thumbnail = e.target.result;
+                }
+
+                reader.readAsDataURL(file);
+
+              } else {
+                toastr.error('Image formet not supported!', 'Error');
+              }
+         
+            },
+
+        imageLink: function(name){
+          if (name != '' && name.length < 256) {
+            return 'upload/posts/' + name; 
+          }else{
+            return this.form.thumbnail;
+          }
+          
+        },
+
     }
 });

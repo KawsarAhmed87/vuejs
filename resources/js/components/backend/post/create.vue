@@ -103,12 +103,12 @@ export default {
 
     name: "create",
     data: () => ({
+
     form: new Form({
       title: null,
       category_id: '',
       content: null,
       thumbnail: null,
-     
       status: 'published', 
     }),
 
@@ -133,7 +133,7 @@ export default {
     let alterThis = this;
       const response = await this.form.post('/post-create')
         .then(function(response){
-                   
+                   console.log(response);
           /*toastr---------*/
          toastr.success('Data saved successfully!', 'Success');
         })
@@ -143,26 +143,7 @@ export default {
         alterThis.$router.push("/post");
     },
 
-    loadThumbnail: function(e){
-      
-      let file = e.target.files[0];
-      let reader = new FileReader();
     
-      if (file.type === 'image/jpeg') {
-        reader.onload  = e => {
-          this.form.thumbnail = e.target.result;
-        }
-
-        reader.readAsDataURL(file);
-
-      } else {
-        toastr.error('Image formet not supported!', 'Error');
-      }
-
-      
-
-      
-    }
 
   }
 

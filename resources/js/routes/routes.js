@@ -24,6 +24,6 @@ export const routes = [
 
     { path: '/post', component: post },
     { path: '/post-create', component: addPost },
-    { path: '/post-edit/:slug', component: editPost },
+    { path: '/post-edit/:id', component: editPost },
 
   ];

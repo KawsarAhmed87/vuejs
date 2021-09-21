@@ -37,7 +37,7 @@
                       <td>{{post.category.name}}</td>
                       <td>{{post.title | sortName(20)}}</td>
                       <td>{{post.content | sortName(20)}}</td>
-                      <td><img width="75px" :src="post.thumbnail "></td>
+                      <td><img width="75px" :src="imageLink(post.thumbnail)"></td>
                       <td>{{post.status | firtUpper }}</td>
                       
                       <td width="12%">
@@ -130,6 +130,9 @@ export default {
           if (result.isConfirmed) {
              axios.get('post-delete/'+id).then((response)=>{
                 toastr.error('Data deleted successfully!', 'Deleted');
+                 this.selectedAll = false;
+                  this.selectedData = [];
+                  this.isSelected = false;
                 this.$store.dispatch("getPosts");
               }).catch((error) => {
 
@@ -185,6 +188,8 @@ export default {
 
       });
     },
+
+    
 
 
 

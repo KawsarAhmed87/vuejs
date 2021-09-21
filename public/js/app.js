@@ -2942,6 +2942,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 alterThis = _this;
                 _context.next = 3;
                 return _this.form.post('/post-create').then(function (response) {
+                  console.log(response);
+                  /*toastr---------*/
+
                   /*toastr---------*/
                   toastr.success('Data saved successfully!', 'Success');
                 });
@@ -2959,22 +2962,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    },
-    loadThumbnail: function loadThumbnail(e) {
-      var _this2 = this;
-
-      var file = e.target.files[0];
-      var reader = new FileReader();
-
-      if (file.type === 'image/jpeg') {
-        reader.onload = function (e) {
-          _this2.form.thumbnail = e.target.result;
-        };
-
-        reader.readAsDataURL(file);
-      } else {
-        toastr.error('Image formet not supported!', 'Error');
-      }
     }
   }
 });
@@ -2992,6 +2979,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
+/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3065,19 +3054,62 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "create",
+  name: "eidt",
   data: function data() {
     return {
       form: new Form({
-        id: null,
-        name: null,
-        status: null
-      })
+        title: null,
+        category_id: '',
+        content: null,
+        thumbnail: null,
+        status: 'published'
+      }),
+      editor: _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default.a,
+      editorConfig: {// The configuration of the editor.
+      }
     };
   },
   mounted: function mounted() {
     this.getPostData();
+    this.$store.dispatch("getActiveCategories");
+  },
+  computed: {
+    categories: function categories() {
+      return this.$store.getters.categories;
+    }
   },
   methods: {
     updatePost: function updatePost() {
@@ -3112,7 +3144,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     getPostData: function getPostData() {
       var this_post = this;
-      axios.get("/post-show/" + this.$route.params.slug).then(function (response) {
+      axios.get("/post-show/" + this.$route.params.id).then(function (response) {
         this_post.form.fill(response.data.post);
       })["catch"](function (error) {});
     }
@@ -3257,6 +3289,9 @@ __webpack_require__.r(__webpack_exports__);
         if (result.isConfirmed) {
           axios.get('post-delete/' + id).then(function (response) {
             toastr.error('Data deleted successfully!', 'Deleted');
+            _this.selectedAll = false;
+            _this.selectedData = [];
+            _this.isSelected = false;
 
             _this.$store.dispatch("getPosts");
           })["catch"](function (error) {});
@@ -67230,9 +67265,80 @@ var render = function() {
                     "label",
                     {
                       staticClass: "col-sm-2 col-form-label",
-                      attrs: { for: "categoryName" }
+                      attrs: { for: "categoryId" }
                     },
-                    [_vm._v("Name")]
+                    [_vm._v("Category")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-10" },
+                    [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.category_id,
+                              expression: "form.category_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "categoryId" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form,
+                                "category_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Select")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.categories, function(category) {
+                            return _c(
+                              "option",
+                              { domProps: { value: category.id } },
+                              [_vm._v(_vm._s(category.name))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c("HasError", {
+                        attrs: { form: _vm.form, field: "category_id" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-sm-2 col-form-label",
+                      attrs: { for: "postTitle" }
+                    },
+                    [_vm._v("Ttile")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -67244,29 +67350,100 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form.name,
-                            expression: "form.name"
+                            value: _vm.form.title,
+                            expression: "form.title"
                           }
                         ],
                         staticClass: "form-control",
                         attrs: {
                           type: "text",
-                          id: "categoryName",
-                          placeholder: "Name"
+                          id: "postTitle",
+                          placeholder: "Post title"
                         },
-                        domProps: { value: _vm.form.name },
+                        domProps: { value: _vm.form.title },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.form, "name", $event.target.value)
+                            _vm.$set(_vm.form, "title", $event.target.value)
                           }
                         }
                       }),
                       _vm._v(" "),
                       _c("HasError", {
-                        attrs: { form: _vm.form, field: "name" }
+                        attrs: { form: _vm.form, field: "title" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-sm-2 col-form-label",
+                      attrs: { for: "postContent" }
+                    },
+                    [_vm._v("Content")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-10" },
+                    [
+                      _c("ckeditor", {
+                        attrs: { editor: _vm.editor, config: _vm.editorConfig },
+                        model: {
+                          value: _vm.form.content,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "content", $$v)
+                          },
+                          expression: "form.content"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("HasError", {
+                        attrs: { form: _vm.form, field: "content" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-sm-2 col-form-label",
+                      attrs: { for: "postThumbnail" }
+                    },
+                    [_vm._v("Image")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-10" },
+                    [
+                      _c("input", {
+                        attrs: { type: "file", id: "postThumbnail" },
+                        on: {
+                          change: function($event) {
+                            return _vm.loadThumbnail($event)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("img", {
+                        attrs: {
+                          src: _vm.imageLink(_vm.form.thumbnail),
+                          alt: ""
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("HasError", {
+                        attrs: { form: _vm.form, field: "thumbnail" }
                       })
                     ],
                     1
@@ -67304,12 +67481,14 @@ var render = function() {
                             attrs: {
                               type: "radio",
                               id: "activeCheck",
-                              value: "1"
+                              value: "published"
                             },
-                            domProps: { checked: _vm._q(_vm.form.status, "1") },
+                            domProps: {
+                              checked: _vm._q(_vm.form.status, "published")
+                            },
                             on: {
                               change: function($event) {
-                                return _vm.$set(_vm.form, "status", "1")
+                                return _vm.$set(_vm.form, "status", "published")
                               }
                             }
                           }),
@@ -67320,7 +67499,7 @@ var render = function() {
                               staticClass: "form-check-label",
                               attrs: { for: "activeCheck" }
                             },
-                            [_vm._v("Active")]
+                            [_vm._v("Published")]
                           )
                         ]
                       ),
@@ -67342,12 +67521,14 @@ var render = function() {
                             attrs: {
                               type: "radio",
                               id: "inActiveCheck",
-                              value: "0"
+                              value: "draft"
                             },
-                            domProps: { checked: _vm._q(_vm.form.status, "0") },
+                            domProps: {
+                              checked: _vm._q(_vm.form.status, "draft")
+                            },
                             on: {
                               change: function($event) {
-                                return _vm.$set(_vm.form, "status", "0")
+                                return _vm.$set(_vm.form, "status", "draft")
                               }
                             }
                           }),
@@ -67358,7 +67539,7 @@ var render = function() {
                               staticClass: "form-check-label",
                               attrs: { for: "inActiveCheck" }
                             },
-                            [_vm._v("Inactive")]
+                            [_vm._v("Draft")]
                           )
                         ]
                       ),
@@ -67572,7 +67753,10 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [
                       _c("img", {
-                        attrs: { width: "75px", src: post.thumbnail }
+                        attrs: {
+                          width: "75px",
+                          src: _vm.imageLink(post.thumbnail)
+                        }
                       })
                     ]),
                     _vm._v(" "),
@@ -85146,6 +85330,29 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.mixin({
       }).then(function (result) {
         if (result.isConfirmed) Callbacks();
       });
+    },
+    loadThumbnail: function loadThumbnail(e) {
+      var _this = this;
+
+      var file = e.target.files[0];
+      var reader = new FileReader();
+
+      if (file.type === 'image/jpeg') {
+        reader.onload = function (e) {
+          _this.form.thumbnail = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+      } else {
+        toastr.error('Image formet not supported!', 'Error');
+      }
+    },
+    imageLink: function imageLink(name) {
+      if (name != '' && name.length < 256) {
+        return 'upload/posts/' + name;
+      } else {
+        return this.form.thumbnail;
+      }
     }
   }
 });
@@ -85199,7 +85406,7 @@ var routes = [{
   path: '/post-create',
   component: _components_backend_post_create__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
-  path: '/post-edit/:slug',
+  path: '/post-edit/:id',
   component: _components_backend_post_edit__WEBPACK_IMPORTED_MODULE_6__["default"]
 }];
 

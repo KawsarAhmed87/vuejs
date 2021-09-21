@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
 
+use Image;
+
 class PostController extends Controller
 {
     /**
@@ -42,6 +44,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        $file = explode(';', $request->thumbnail);
+        $file = explode('/', $file[0] );
+        $file_exten = end($file); 
+        $image = slugify($request->title).".".$file_exten;
+
         $this->validate($request, [
             'title' => 'required',
             'category_id' => 'required',
@@ -50,14 +58,20 @@ class PostController extends Controller
 
         ]);
 
-        Post::create([
+        $success = Post::create([
             'title' => $request->title,
             'user_id' => Auth()->user()->id,
             'category_id' => $request->category_id,
             'content' => $request->content,
-            'thumbnail' => 'thumbnail',
+            'thumbnail' => $image,
             'status' => $request->status,
         ]);
+
+        if ($success) {
+
+           Image::make($request->thumbnail)->resize(400, 200)->save(public_path('upload/posts/').$image);
+        }
+
     }
 
     /**
@@ -68,7 +82,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return response()->json(['post' => $post], 200);
     }
 
     /**
@@ -91,7 +107,19 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:5|max:100',
+            'status' => 'required',
+
+        ]);
+
+        $post = Post::find($id);
+
+        $post->title = $request->title;
+        $post->category_id = $request->category_id;
+        $post->content = $request->content;
+        $post->status = $request->status;
+        $post->save();
     }
 
     /**
@@ -104,13 +132,24 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        $post->delete();
+        $fileName = $post->thumbnail;
+        if ($post->delete()) {
+            if (file_exists(public_path('upload/posts/'.$fileName))) {
+              unlink(public_path('upload/posts/'.$fileName));
+            }
+        }
+        
     }
 
     public function bulkDelete(Request $request){
        foreach ($request->dataSelect as $data) {
-         $category = Post::find($data);
-         $category->delete();
+         $post = Post::find($data);
+         $fileName = $post->thumbnail;
+        if ($post->delete()) {
+            if (file_exists(public_path('upload/posts/'.$fileName))) {
+              unlink(public_path('upload/posts/'.$fileName));
+            }
+        }
        }
     }
 
