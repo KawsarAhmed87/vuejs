@@ -95,6 +95,7 @@ export default {
       selectedAll: false,
       selectedData: [],
       isSelected: false,
+  
      
     }
   },

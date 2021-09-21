@@ -133,7 +133,7 @@ export default {
     let alterThis = this;
       const response = await this.form.post('/post-create')
         .then(function(response){
-                   console.log(response);
+                  
           /*toastr---------*/
          toastr.success('Data saved successfully!', 'Success');
         })

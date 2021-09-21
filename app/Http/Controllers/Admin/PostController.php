@@ -108,18 +108,42 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required|min:5|max:100',
+            'title' => 'required',
+            'category_id' => 'required',
+            'content' => 'required',
             'status' => 'required',
 
         ]);
 
         $post = Post::find($id);
-
         $post->title = $request->title;
         $post->category_id = $request->category_id;
         $post->content = $request->content;
         $post->status = $request->status;
+
+        if ($request->thumbnail != $post->thumbnail) {
+
+        $fileName = $post->thumbnail;
+
+        if (file_exists(public_path('upload/posts/'.$fileName))) {
+              unlink(public_path('upload/posts/'.$fileName));
+            }
+
+        $file = explode(';', $request->thumbnail);
+        $file = explode('/', $file[0] );
+        $file_exten = end($file); 
+        $image = slugify($request->title).".".$file_exten;
+        $post->thumbnail = $image;
+        
+
+        Image::make($request->thumbnail)->resize(400, 200)->save(public_path('upload/posts/').$image);
+
+        }
+
         $post->save();
+
+
+
     }
 
     /**
@@ -150,6 +174,7 @@ class PostController extends Controller
               unlink(public_path('upload/posts/'.$fileName));
             }
         }
+
        }
     }
 

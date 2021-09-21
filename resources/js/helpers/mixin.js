@@ -37,7 +37,7 @@ Vue.mixin({
             },
 
         imageLink: function(name){
-          if (name != '' && name.length < 256) {
+          if (name !== null && name.length < 256) {
             return 'upload/posts/' + name; 
           }else{
             return this.form.thumbnail;

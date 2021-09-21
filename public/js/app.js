@@ -2942,9 +2942,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 alterThis = _this;
                 _context.next = 3;
                 return _this.form.post('/post-create').then(function (response) {
-                  console.log(response);
-                  /*toastr---------*/
-
                   /*toastr---------*/
                   toastr.success('Data saved successfully!', 'Success');
                 });
@@ -85348,7 +85345,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.mixin({
       }
     },
     imageLink: function imageLink(name) {
-      if (name != '' && name.length < 256) {
+      if (name !== null && name.length < 256) {
         return 'upload/posts/' + name;
       } else {
         return this.form.thumbnail;
