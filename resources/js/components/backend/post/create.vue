@@ -134,6 +134,7 @@ export default {
       const response = await this.form.post('/post-create')
         .then(function(response){
                   
+
           /*toastr---------*/
          toastr.success('Data saved successfully!', 'Success');
         })
