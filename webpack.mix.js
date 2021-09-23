@@ -20,6 +20,9 @@ mix.sass('resources/sass/site/app.scss', 'public/css/style.css');
 
 */
 
+
+
+/*front end--------*/
 mix.styles([
     'resources/sass/site/assets/css/bootstrap.min.css',
     'resources/sass/site/assets/css/main.css',
@@ -42,6 +45,12 @@ mix.scripts([
     'resources/sass/site/assets/js/wow.min.js',
     'resources/sass/site/assets/js/scripts.js',
 ], 'public/js/all.js');
+
+
+mix.copy('resources/sass/site/assets/images', 'public/images', false);
+
+
+mix.js('resources/js/app2.js', 'public/js/app2.js');
 
 
 

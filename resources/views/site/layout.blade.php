@@ -21,7 +21,9 @@
 
 
 	</head>
-    <body class="cnt-home">
+ <body class="cnt-home">
+
+ <div id="app">
 		<!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1">
 
@@ -31,35 +33,11 @@
 		<div class="header-top-inner">
 			<div class="cnt-account">
 				<ul class="list-unstyled">
-					<li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
-					<li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-					<li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-					<li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
 					<li><a href="#"><i class="icon fa fa-lock"></i>Login</a></li>
 				</ul>
 			</div><!-- /.cnt-account -->
 
-			<div class="cnt-block">
-				<ul class="list-unstyled list-inline">
-					<li class="dropdown dropdown-small">
-						<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">USD</a></li>
-							<li><a href="#">INR</a></li>
-							<li><a href="#">GBP</a></li>
-						</ul>
-					</li>
-
-					<li class="dropdown dropdown-small">
-						<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">English </span><b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">English</a></li>
-							<li><a href="#">French</a></li>
-							<li><a href="#">German</a></li>
-						</ul>
-					</li>
-				</ul><!-- /.list-unstyled -->
-			</div><!-- /.cnt-cart -->
+			
 			<div class="clearfix"></div>
 		</div><!-- /.header-top-inner -->
 	</div><!-- /.container -->
@@ -71,9 +49,9 @@
 				<div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
 					<!-- ============================================================= LOGO ============================================================= -->
 <div class="logo">
-	<a href="home.html">
+	<a href="">
 		
-		<img src="assets/images/logo.png" alt="">
+		<img src="{{asset("images/logo.png")}}" alt="">
 
 	</a>
 </div><!-- /.logo -->
@@ -137,7 +115,7 @@
 					<div class="row">
 						<div class="col-xs-4">
 							<div class="image">
-								<a href="detail.html"><img src="assets/images/cart.jpg" alt=""></a>
+								<a href="detail.html"><img src="{{asset('images/cart.jpg')}}" alt=""></a>
 							</div>
 						</div>
 						<div class="col-xs-7">
@@ -196,231 +174,6 @@
 				<a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
 				
 			</li>
-			<li class="dropdown yamm mega-menu">
-				<a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Clothing</a>
-                <ul class="dropdown-menu container">
-					<li>
-               						<div class="yamm-content ">
-            <div class="row">
-                
-                   <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                        <h2 class="title">Men</h2>
-                        <ul class="links">
-                            <li><a href="#">Dresses</a></li>
-                            <li><a href="#">Shoes </a></li>
-                            <li><a href="#">Jackets</a></li>
-                            <li><a href="#">Sunglasses</a></li>
-                            <li><a href="#">Sport Wear</a></li>
-                             <li><a href="#">Blazers</a></li>
-                              <li><a href="#">Shirts</a></li>
-                          
-                        </ul>
-                    </div><!-- /.col -->
-
-                    <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                        <h2 class="title">Women</h2>
-                        <ul class="links">
-                            <li><a href="#">Handbags</a></li>
-                            <li><a href="#">Jwellery</a></li>
-                            <li><a href="#">Swimwear </a></li>                   
-                            <li><a href="#">Tops</a></li>
-                            <li><a href="#">Flats</a></li>
-                             <li><a href="#">Shoes</a></li>
-                              <li><a href="#">Winter Wear</a></li>
-                       
-                        </ul>
-                    </div><!-- /.col -->
-
-                    <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                        <h2 class="title">Boys</h2>
-                        <ul class="links">
-                            <li><a href="#">Toys & Games</a></li>
-                            <li><a href="#">Jeans</a></li>
-                            <li><a href="#">Shirts</a></li>
-                            <li><a href="#">Shoes</a></li>
-                             <li><a href="#">School Bags</a></li>
-                              <li><a href="#">Lunch Box</a></li> 
-                               <li><a href="#">Footwear</a></li>
-                                                                   
-                        </ul>
-                    </div><!-- /.col -->
-
-                    <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                        <h2 class="title">Girls</h2>
-                        <ul class="links">
-                            <li><a href="#">Sandals </a></li> 
-                            <li><a href="#">Shorts</a></li>
-                            <li><a href="#">Dresses</a></li>
-                            <li><a href="#">Jwellery</a></li>
-                            <li><a href="#">Bags</a></li>
-                             <li><a href="#">Night Dress</a></li>
-                              <li><a href="#">Swim Wear</a></li>
-                          
-                                   
-                        </ul>
-                    </div><!-- /.col -->
-
-                    
-       <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
-                                    <img class="img-responsive" src="assets/images/banners/top-menu-banner.jpg" alt="">
-                              
-                            
-      
-   
-       
- 
-</div><!-- /.yamm-content -->					
-</div>
-</div>
-
-</li>
-				</ul>
-				
-			</li>
-
-			<li class="dropdown mega-menu">
-				<a href="category.html"  data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Electronics
-				   <span class="menu-label hot-menu hidden-xs">hot</span>
-				</a>
-                <ul class="dropdown-menu container">
-					<li>
-						<div class="yamm-content">
-    <div class="row">
-           <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                <h2 class="title">Laptops</h2>
-                <ul class="links">
-                   <li><a href="#">Gaming</a></li>
-                   <li><a href="#">Laptop Skins</a></li>
-                    <li><a href="#">Apple</a></li>
-                    <li><a href="#">Dell</a></li>
-                    <li><a href="#">Lenovo</a></li>
-                    <li><a href="#">Microsoft</a></li>
-                    <li><a href="#">Asus</a></li>
-                     <li><a href="#">Adapters</a></li>
-                     <li><a href="#">Batteries</a></li>
-                     <li><a href="#">Cooling Pads</a></li>
-                </ul>
-            </div><!-- /.col -->
-
-            <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                <h2 class="title">Desktops</h2>
-                <ul class="links">
-                    <li><a href="#">Routers & Modems</a></li>
-                    <li><a href="#">CPUs, Processors</a></li>
-                    <li><a href="#">PC Gaming Store</a></li>
-                    <li><a href="#">Graphics Cards</a></li>
-                    <li><a href="#">Components</a></li>
-                    <li><a href="#">Webcam</a></li>
-                    <li><a href="#">Memory (RAM)</a></li>
-                    <li><a href="#">Motherboards</a></li>
-                    <li><a href="#">Keyboards</a></li>
-                    <li><a href="#">Headphones</a></li>
-                </ul>
-            </div><!-- /.col -->
-
-            <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                <h2 class="title">Cameras</h2>
-                <ul class="links">
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Binoculars</a></li>
-                    <li><a href="#">Telescopes</a></li>
-                    <li><a href="#">Camcorders</a></li>
-                    <li><a href="#">Digital</a></li>
-                     <li><a href="#">Film Cameras</a></li>
-                     <li><a href="#">Flashes</a></li>
-                     <li><a href="#">Lenses</a></li>
-                     <li><a href="#">Surveillance</a></li>
-                      <li><a href="#">Tripods</a></li>
-                     
-                </ul>
-            </div><!-- /.col -->
-            <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                <h2 class="title">Mobile Phones</h2>
-                <ul class="links">
-                    <li><a href="#">Apple</a></li>
-                    <li><a href="#">Samsung</a></li>
-                    <li><a href="#">Lenovo</a></li>
-                    <li><a href="#">Motorola</a></li>
-                    <li><a href="#">LeEco</a></li>
-                    <li><a href="#">Asus</a></li>
-                    <li><a href="#">Acer</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Headphones</a></li>
-                     <li><a href="#">Memory Cards</a></li>
-                </ul>
-            </div>
-            
-             <div class="col-xs-12 col-sm-12 col-md-4 col-menu custom-banner">
-             <a href="#"><img alt="" src="assets/images/banners/banner-side.png"></a>
-             </div>
-    </div><!-- /.row -->
-</div><!-- /.yamm-content -->					</li>
-				</ul>
-			</li>
-			<li class="dropdown hidden-sm">
-				
-				<a href="category.html">Health & Beauty
-				    <span class="menu-label new-menu hidden-xs">new</span>
-				</a>
-			</li>
-
-			<li class="dropdown hidden-sm">
-				<a href="category.html">Watches</a>
-			</li>
-
-			<li class="dropdown">
-				<a href="contact.html">Jewellery</a>
-			</li>
-            
-            <li class="dropdown">
-				<a href="contact.html">Shoes</a>
-			</li>
-            <li class="dropdown">
-				<a href="contact.html">Kids & Girls</a>
-			</li>
-			
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Pages</a>
-				<ul class="dropdown-menu pages">
-					<li>
-						<div class="yamm-content">
-							<div class="row">
-								
-									<div class="col-xs-12 col-menu">
-	                                  <ul class="links">
-		                                  	<li><a href="home.html">Home</a></li>
-											<li><a href="category.html">Category</a></li>
-											<li><a href="detail.html">Detail</a></li>
-											<li><a href="shopping-cart.html">Shopping Cart Summary</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-											<li><a href="blog.html">Blog</a></li>
-											<li><a href="blog-details.html">Blog Detail</a></li>
-											<li><a href="contact.html">Contact</a></li>
-                                            <li><a href="sign-in.html">Sign In</a></li>
-											<li><a href="my-wishlist.html">Wishlist</a></li>
-											<li><a href="terms-conditions.html">Terms and Condition</a></li>
-											<li><a href="track-orders.html">Track Orders</a></li>
-											<li><a href="product-comparison.html">Product-Comparison</a></li>
-		                                  	<li><a href="faq.html">FAQ</a></li>
-											<li><a href="404.html">404</a></li>
-											
-	                                  </ul>
-									</div>
-									
-									
-								
-							</div>
-						</div>
-					</li>
-                    
-                   
-					
-				</ul>
-			</li>
-             <li class="dropdown  navbar-right special-menu">
-				<a href="#">Todays offer</a>
-			</li>
-					
 			
 		</ul><!-- /.navbar-nav -->
 		<div class="clearfix"></div>				
@@ -442,8 +195,8 @@
 	<div class="container">
 		<div class="breadcrumb-inner">
 			<ul class="list-inline list-unstyled">
-				<li><a href="#">Home</a></li>
-				<li class='active'>Blog</li>
+				<router-link to="/">Home</router-link>
+				<router-link to="/about">About</router-link>
 			</ul>
 		</div><!-- /.breadcrumb-inner -->
 	</div><!-- /.container -->
@@ -454,33 +207,10 @@
 		<div class="row">
 			<div class="blog-page">
 				<div class="col-md-9">
-					<div class="blog-post  wow fadeInUp">
-	<a href="blog-details.html"><img class="img-responsive" src="assets/images/blog-post/blog_big_01.jpg" alt=""></a>
-	<h1><a href="blog-details.html">Nemo enim ipsam voluptatem quia voluptas sit aspernatur</a></h1>
-	<span class="author">John Doe</span>
-	<span class="review">6 Comments</span>
-	<span class="date-time">14/06/2016 10.00AM</span>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...</p>
-	<a href="#" class="btn btn-upper btn-primary read-more">read more</a>
-</div>
-<div class="blog-post outer-top-bd  wow fadeInUp">
-	<a href="blog-details.html"><img class="img-responsive" src="assets/images/blog-post/blog_big_02.jpg" alt=""></a>
-	<h1><a href="blog-details.html">Nemo enim ipsam voluptatem quia voluptas sit aspernatur</a></h1>
-	<span class="author">Sarah Smith</span>
-	<span class="review">6 Comments</span>
-	<span class="date-time">20/06/2016 11.00AM</span>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...</p>
-	<a href="#" class="btn btn-upper btn-primary read-more">read more</a>
-</div>
-<div class="blog-post outer-top-bd  wow fadeInUp">
-	<a href="blog-details.html"><img class="img-responsive" src="assets/images/blog-post/blog_big_03.jpg" alt=""></a>
-	<h1><a href="blog-details.html">Nemo enim ipsam voluptatem quia voluptas sit aspernatur</a></h1>
-	<span class="author">Mark Doe</span>
-	<span class="review">6 Comments</span>
-	<span class="date-time">14/06/2014 11.00AM</span>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...</p>
-	<a href="#" class="btn btn-upper btn-primary read-more">read more</a>
-</div>
+			
+
+
+		<front-master></front-master>
 
 <div class="clearfix blog-pagination filters-container  wow fadeInUp" style="padding:0px; background:none; box-shadow:none; margin-top:15px; border:none">
 						
@@ -512,7 +242,7 @@
 </div>		
 
 <div class="home-banner outer-top-n outer-bottom-xs">
-<img src="assets/images/banners/LHS-banner.jpg" alt="Image">
+<img src="{{asset('')}}images/banners/LHS-banner.jpg" alt="Image">
 </div>
 				<!-- ==============================================CATEGORY============================================== -->
 <div class="sidebar-widget outer-bottom-xs wow fadeInUp">
@@ -537,234 +267,20 @@
 	            </div><!-- /.accordion-body -->
 	        </div><!-- /.accordion-group -->
 
-	        <div class="accordion-group">
-	            <div class="accordion-heading">
-	                <a href="#collapseTwo" data-toggle="collapse" class="accordion-toggle collapsed">
-	                  Desktops
-	                </a>
-	            </div><!-- /.accordion-heading -->
-	            <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
-	                <div class="accordion-inner">
-	                    <ul>
-	                        <li><a href="#">gaming</a></li>
-	                        <li><a href="#">office</a></li>
-	                        <li><a href="#">kids</a></li>
-	                        <li><a href="#">for women</a></li>
-	                    </ul>
-	                </div><!-- /.accordion-inner -->
-	            </div><!-- /.accordion-body -->
-	        </div><!-- /.accordion-group -->
-
-	        <div class="accordion-group">
-	            <div class="accordion-heading">
-	                <a href="#collapseThree" data-toggle="collapse" class="accordion-toggle collapsed">
-	                   Pants
-	                </a>
-	            </div><!-- /.accordion-heading -->
-	            <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
-	                <div class="accordion-inner">
-	                    <ul>
-	                        <li><a href="#">gaming</a></li>
-	                        <li><a href="#">office</a></li>
-	                        <li><a href="#">kids</a></li>
-	                        <li><a href="#">for women</a></li>
-	                    </ul>
-	                </div><!-- /.accordion-inner -->
-	            </div><!-- /.accordion-body -->
-	        </div><!-- /.accordion-group -->
-
-	        <div class="accordion-group">
-	            <div class="accordion-heading">
-	                <a href="#collapseFour" data-toggle="collapse" class="accordion-toggle collapsed">
-	                   Bags
-	                </a>
-	            </div><!-- /.accordion-heading -->
-	            <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
-	                <div class="accordion-inner">
-	                    <ul>
-	                        <li><a href="#">gaming</a></li>
-	                        <li><a href="#">office</a></li>
-	                        <li><a href="#">kids</a></li>
-	                        <li><a href="#">for women</a></li>
-	                    </ul>
-	                </div><!-- /.accordion-inner -->
-	            </div><!-- /.accordion-body -->
-	        </div><!-- /.accordion-group -->
-
-	        <div class="accordion-group">
-	            <div class="accordion-heading">
-	                <a href="#collapseFive" data-toggle="collapse" class="accordion-toggle collapsed">
-	                  Hats
-	                </a>
-	            </div><!-- /.accordion-heading -->
-	            <div class="accordion-body collapse" id="collapseFive" style="height: 0px;">
-	                <div class="accordion-inner">
-	                    <ul>
-	                        <li><a href="#">gaming</a></li>
-	                        <li><a href="#">office</a></li>
-	                        <li><a href="#">kids</a></li>
-	                        <li><a href="#">for women</a></li>
-	                    </ul>
-	                </div><!-- /.accordion-inner -->
-	            </div><!-- /.accordion-body -->
-	        </div><!-- /.accordion-group -->
-
-	        <div class="accordion-group">
-	            <div class="accordion-heading">
-	                <a href="#collapseSix" data-toggle="collapse" class="accordion-toggle collapsed">
-	                 Accessories
-	                </a>
-	            </div><!-- /.accordion-heading -->
-	            <div class="accordion-body collapse" id="collapseSix" style="height: 0px;">
-	                <div class="accordion-inner">
-	                    <ul>
-	                        <li><a href="#">gaming</a></li>
-	                        <li><a href="#">office</a></li>
-	                        <li><a href="#">kids</a></li>
-	                        <li><a href="#">for women</a></li>
-	                    </ul>
-	                </div><!-- /.accordion-inner -->
-	            </div><!-- /.accordion-body -->
-	        </div><!-- /.accordion-group -->
 
 	    </div><!-- /.accordion -->
 	</div><!-- /.sidebar-widget-body -->
 </div><!-- /.sidebar-widget -->
-	<!-- ============================================== CATEGORY : END ============================================== -->						<div class="sidebar-widget outer-bottom-xs wow fadeInUp">
-    <h3 class="section-title">tab widget</h3>
-	<ul class="nav nav-tabs">
-	  <li class="active"><a href="#popular" data-toggle="tab">popular post</a></li>
-	  <li><a href="#recent" data-toggle="tab">recent post</a></li>
-	</ul>
-	<div class="tab-content" style="padding-left:0">
-	   <div class="tab-pane active m-t-20" id="popular">
-		<div class="blog-post inner-bottom-30 " >
-			<img class="img-responsive" src="assets/images/blog-post/blog_big_01.jpg" alt="">
-			<h4><a href="blog-details.html">Simple Blog Post</a></h4>
-				<span class="review">6 Comments</span>
-			<span class="date-time">12/06/16</span>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-			
-		</div>
-		<div class="blog-post" >
-			<img class="img-responsive" src="assets/images/blog-post/blog_big_02.jpg" alt="">
-			<h4><a href="blog-details.html">Simple Blog Post</a></h4>
-			<span class="review">6 Comments</span>
-			<span class="date-time">23/06/16</span>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-			
-		</div>
-	</div>
+	<!-- ============================================== CATEGORY : END ============================================== -->						
 
-	<div class="tab-pane m-t-20" id="recent">
-		<div class="blog-post inner-bottom-30" >
-			<img class="img-responsive" src="assets/images/blog-post/blog_big_03.jpg" alt="">
-			<h4><a href="blog-details.html">Simple Blog Post</a></h4>
-			<span class="review">6 Comments</span>
-			<span class="date-time">5/06/16</span>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-			
-		</div>
-		<div class="blog-post">
-			<img class="img-responsive" src="assets/images/blog-post/blog_big_01.jpg" alt="">
-			<h4><a href="blog-details.html">Simple Blog Post</a></h4>
-			<span class="review">6 Comments</span>
-			<span class="date-time">10/07/16</span>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-			
-		</div>
-	</div>
-	</div>
+
+<!-- ============================================== PRODUCT TAGS : END ============================================== -->					
 </div>
-						<!-- ============================================== PRODUCT TAGS ============================================== -->
-<div class="sidebar-widget product-tag wow fadeInUp">
-	<h3 class="section-title">Product tags</h3>
-	<div class="sidebar-widget-body outer-top-xs">
-		<div class="tag-list">					
-			<a class="item" title="Phone" href="category.html">Phone</a>
-			<a class="item active" title="Vest" href="category.html">Vest</a>
-			<a class="item" title="Smartphone" href="category.html">Smartphone</a>
-			<a class="item" title="Furniture" href="category.html">Furniture</a>
-			<a class="item" title="T-shirt" href="category.html">T-shirt</a>
-			<a class="item" title="Sweatpants" href="category.html">Sweatpants</a>
-			<a class="item" title="Sneaker" href="category.html">Sneaker</a>
-			<a class="item" title="Toys" href="category.html">Toys</a>
-			<a class="item" title="Rose" href="category.html">Rose</a>
-		</div><!-- /.tag-list -->
-	</div><!-- /.sidebar-widget-body -->
-</div><!-- /.sidebar-widget -->
-<!-- ============================================== PRODUCT TAGS : END ============================================== -->					</div>
 				</div>
 			</div>
 		</div>
 		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
-<div id="brands-carousel" class="logo-slider wow fadeInUp">
 
-		<div class="logo-slider-inner">	
-			<div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-				<div class="item m-t-15">
-					<a href="#" class="image">
-						<img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
-					</a>	
-				</div><!--/.item-->
-
-				<div class="item m-t-10">
-					<a href="#" class="image">
-						<img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt="">
-					</a>	
-				</div><!--/.item-->
-
-				<div class="item">
-					<a href="#" class="image">
-						<img data-echo="assets/images/brands/brand3.png" src="assets/images/blank.gif" alt="">
-					</a>	
-				</div><!--/.item-->
-
-				<div class="item">
-					<a href="#" class="image">
-						<img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt="">
-					</a>	
-				</div><!--/.item-->
-
-				<div class="item">
-					<a href="#" class="image">
-						<img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt="">
-					</a>	
-				</div><!--/.item-->
-
-				<div class="item">
-					<a href="#" class="image">
-						<img data-echo="assets/images/brands/brand6.png" src="assets/images/blank.gif" alt="">
-					</a>	
-				</div><!--/.item-->
-
-				<div class="item">
-					<a href="#" class="image">
-						<img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt="">
-					</a>	
-				</div><!--/.item-->
-
-				<div class="item">
-					<a href="#" class="image">
-						<img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt="">
-					</a>	
-				</div><!--/.item-->
-
-				<div class="item">
-					<a href="#" class="image">
-						<img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
-					</a>	
-				</div><!--/.item-->
-
-				<div class="item">
-					<a href="#" class="image">
-						<img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt="">
-					</a>	
-				</div><!--/.item-->
-		    </div><!-- /.owl-carousel #logo-slider -->
-		</div><!-- /.logo-slider-inner -->
-	
-</div><!-- /.logo-slider -->
 <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div>
 </div>
 <!-- ============================================================= FOOTER ============================================================= -->
@@ -885,11 +401,11 @@
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="clearfix payment-methods">
                     <ul>
-                        <li><img src="assets/images/payments/1.png" alt=""></li>
-                        <li><img src="assets/images/payments/2.png" alt=""></li>
-                        <li><img src="assets/images/payments/3.png" alt=""></li>
-                        <li><img src="assets/images/payments/4.png" alt=""></li>
-                        <li><img src="assets/images/payments/5.png" alt=""></li>
+                        <li><img src="{{asset('')}}images/payments/1.png" alt=""></li>
+                        <li><img src="{{asset('')}}images/payments/2.png" alt=""></li>
+                        <li><img src="{{asset('')}}images/payments/3.png" alt=""></li>
+                        <li><img src="{{asset('')}}images/payments/4.png" alt=""></li>
+                        <li><img src="{{asset('')}}images/payments/5.png" alt=""></li>
                     </ul>
                 </div><!-- /.payment-methods -->
             </div>
@@ -905,8 +421,10 @@
 	<!-- For demo purposes – can be removed on production : End -->
 
 	<!-- JavaScripts placed at the end of the document so the pages load faster -->
-	<script src="{{asset('js/all.js')}}"></script>
 	
-
+	
+</div>
+<script src="{{asset('js/app2.js')}}"></script>
+<script src="{{asset('js/all.js')}}"></script>
 </body>
 </html>
