@@ -19,6 +19,7 @@ import editPost from '../components/backend/post/edit';
 
 import frontHome from '../components/frontend/Fronthome';
 import frontAbout from '../components/frontend/About';
+import frontCategory from '../components/frontend/Category';
 
 
 
@@ -43,6 +44,7 @@ export const routes = [
 
     { path: '/', component: frontHome},
     { path: '/about', component: frontAbout},
+    { path: '/category/:slug', component: frontCategory},
 
 
 

@@ -26,6 +26,16 @@ class PostController extends Controller
         ], 200);
     }
 
+    public function getPostFront(){
+        $posts = Post::with("category", "user")
+                ->where("status", 'published')
+                ->orderBy('id', "DESC")
+                ->get();
+        return response()->json([
+            'posts' => $posts,
+        ], 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -17,6 +17,10 @@ export default{
     getActiveTopCategories(state){
       return state.categoryData;
     },
+
+    getPostsFront(state){
+      return state.PostData;
+    },
     
   },
   actions: {
@@ -58,7 +62,16 @@ export default{
       }).catch((error)=> {
         
       })
-    }
+    },
+
+    getActionPostFront(data){
+      axios.get("post-list-front").then((response) => {
+        data.commit("getActionpostDatas", response.data.posts);
+     
+      }).catch((error)=> {
+        
+      })
+    },
 
   },
   mutations: {
@@ -72,6 +85,10 @@ export default{
 
     topCategoryDatas(state, stateData){
       state.categoryData = stateData;
+    },
+
+    getActionpostDatas(state, stateData){
+      state.PostData = stateData;
     }
 
   }
