@@ -7,20 +7,14 @@
     <div class="row">
       <div class="blog-page">
         <div class="col-md-9">
-      
-
-
     
-
-
       <div class="blog-post wow fadeInUp" v-for="post in getPosts">
-  <a href="blog-details.html"><img class="img-responsive" src="images/blog-post/blog_big_03.jpg" alt=""></a>
-  <h1><a href="blog-details.html">Nemo enim ipsam voluptatem quia voluptas sit aspernatur</a></h1>
-  <span class="author">Mark Doe</span>
-  <span class="review">6 Comments</span>
-  <span class="date-time">14/06/2014 11.00AM</span>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...</p>
-  <a href="#" class="btn btn-upper btn-primary read-more">read more</a>
+    <router-link :to="`/single-post/${post.id}`"><img class="img-responsive" :src="imageLink(post.thumbnail)" alt=""></router-link>
+  <h1><router-link :to="`/single-post/${post.id}`">{{post.title}}</router-link></h1>
+  <span class="author">{{post.user.name}}</span>
+  <span class="date-time">{{post.created_at | time }}</span>
+  <p>{{post.content | sortName(50)}}.....</p>
+  <router-link :to="`/single-post/${post.id}`" class="btn btn-upper btn-primary read-more">read more</router-link>
 </div>
 
     </div>

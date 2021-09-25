@@ -1,8 +1,7 @@
 <template>
 <div>
-    <h1>Category {{ this.$route.params.slug}}</h1>
+    <h1>Post {{ this.$route.params.id}}</h1>
 </div>
-
 </template>
 
 <script>
