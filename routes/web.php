@@ -31,6 +31,7 @@ Route::post('category-update/{slug}', 'Admin\CategoryController@update');
 Route::post('categories/bulk-delete', 'Admin\CategoryController@bulkDelete');
 Route::post('categories/change-status', 'Admin\CategoryController@changeBulkStatus');
 Route::get('category-active-list', 'Admin\CategoryController@activeCategoriesList');
+Route::get('category-topactive-list', 'Admin\CategoryController@activeTopCategoriesList');
 
 Route::post('post-create', 'Admin\PostController@store');
 Route::get('post-list', 'Admin\PostController@index');

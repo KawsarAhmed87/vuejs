@@ -1,5 +1,5 @@
 
-
+require('./bootstrap');
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router';
@@ -26,7 +26,9 @@ const store = new Vuex.Store(
 
 import {filter} from './filter/filter';
 
+Vue.component('top-header', require('./components/frontend/Header.vue').default);
 Vue.component('front-master', require('./components/frontend/LayoutMaster.vue').default);
+
 
 
 import './helpers/mixin';

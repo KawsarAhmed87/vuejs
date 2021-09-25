@@ -12,7 +12,11 @@ export default{
 
     posts(state){
       return state.PostData;
-    }
+    },
+
+    getActiveTopCategories(state){
+      return state.categoryData;
+    },
     
   },
   actions: {
@@ -45,6 +49,17 @@ export default{
       })
     },
 
+    activeTopCategories(data){
+      axios.get("category-topactive-list").then((response) => {
+
+        data.commit("topCategoryDatas", response.data.categories);
+     
+
+      }).catch((error)=> {
+        
+      })
+    }
+
   },
   mutations: {
     categoryDatas(state, stateData){
@@ -53,6 +68,11 @@ export default{
 
     postDatas(state, stateData){
       state.PostData = stateData;
+    },
+
+    topCategoryDatas(state, stateData){
+      state.categoryData = stateData;
     }
+
   }
 }

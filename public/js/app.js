@@ -85733,6 +85733,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     posts: function posts(state) {
       return state.PostData;
+    },
+    getActiveTopCategories: function getActiveTopCategories(state) {
+      return state.categoryData;
     }
   },
   actions: {
@@ -85750,6 +85753,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("post-list").then(function (response) {
         data.commit("postDatas", response.data.posts);
       })["catch"](function (error) {});
+    },
+    activeTopCategories: function activeTopCategories(data) {
+      axios.get("category-topactive-list").then(function (response) {
+        data.commit("topCategoryDatas", response.data.categories);
+      })["catch"](function (error) {});
     }
   },
   mutations: {
@@ -85758,6 +85766,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     postDatas: function postDatas(state, stateData) {
       state.PostData = stateData;
+    },
+    topCategoryDatas: function topCategoryDatas(state, stateData) {
+      state.categoryData = stateData;
     }
   }
 });
