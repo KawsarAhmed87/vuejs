@@ -45,7 +45,7 @@ export const routes = [
 
     { path: '/', component: frontHome},
     { path: '/about', component: frontAbout},
-    { path: '/category/:slug', component: frontCategory},
+    { path: '/category-page/:id', component: frontCategory},
     { path: '/single-post/:id', component: singlePost},
 
 

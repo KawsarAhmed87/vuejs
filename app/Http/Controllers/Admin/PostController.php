@@ -93,8 +93,18 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-
         return response()->json(['post' => $post], 200);
+    }
+
+    public function singlePost($id){
+        $post = Post::with('user')->find($id);
+        return response()->json(['post' => $post], 200);
+    }
+
+    public function postByCategory($id){
+
+        $posts = Post::with('category','user')->where('category_id', $id)->get();
+        return response()->json(['posts' => $posts], 200);
     }
 
     /**

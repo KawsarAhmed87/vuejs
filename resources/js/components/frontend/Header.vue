@@ -91,7 +91,7 @@
 				
 			</li>
 			<li class="active dropdown yamm-fw" v-for="category in categories">
-					<router-link :to="`/category/${category.slug}`" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">{{category.name}}</router-link>
+					<router-link :to="`/category-page/${category.id}`" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">{{category.name}}</router-link>
 				
 			</li>
 			

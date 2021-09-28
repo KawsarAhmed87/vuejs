@@ -42,3 +42,5 @@ Route::post('posts/bulk-delete', 'Admin\PostController@bulkDelete');
 Route::post('posts/change-status', 'Admin\PostController@changeBulkStatus');
 
 Route::get('post-list-front', 'Admin\PostController@getPostFront');
+Route::get('post-single/{id}', 'Admin\PostController@singlePost');
+Route::get('post-bycategory/{id}', 'Admin\PostController@postByCategory');
